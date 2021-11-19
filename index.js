@@ -3,11 +3,12 @@ const express = require('express')
 const mongoose = require('mongoose');
 const router = require('./Todo/ToDoHandler');
 const userRouter = require('./user/UserHandler');
+const env = require('dotenv');
 const app = express();
 
+env.config()
 
-
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.CONNCETION_STRING, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
     .then(() => console.log("database connect"))
     .catch(err => console.log(err))
@@ -31,7 +32,7 @@ app.use((err, req, res, next) => {
 app.get('/', (req, res) => {
     res.send("Welcome My To-Do Server")
 })
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
 
     console.log('i am listening')
 
