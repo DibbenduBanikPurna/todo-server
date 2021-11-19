@@ -29,7 +29,7 @@ app.use((err, req, res, next) => {
 
 })
 
-app.get('/', (req, res) => {
+app.get('https://p-to-dos.herokuapp.com/', (req, res) => {
     res.send("Welcome My To-Do Server")
 })
 app.listen(process.env.PORT, () => {
